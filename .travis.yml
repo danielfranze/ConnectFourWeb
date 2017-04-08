@@ -3,3 +3,11 @@ jdk:
   - oraclejdk8
 scala:
   - 2.11.8
+addons:
+  sonarqube:
+    organization: "danielfranze-github" # the key of the org you chose at step #3
+    token:
+      secure: b160728adf2b17c60407a1099c532b2654c5549f # encrypted value of your token
+script:
+  # other script steps might be done before running the actual SonarQube analysis
+  - sonar-scanner
