@@ -1,5 +1,5 @@
-name          := "htwg-scala-seed"
-organization  := "de.htwg.se"
+name          := "ConnectFourWeb"
+organization  := "de.htwg.sa"
 version       := "1.0-SNAPSHOT"
 scalaVersion  := "2.11.8"
 scalacOptions := Seq("-unchecked", "-feature", "-deprecation", "-encoding", "utf8")
