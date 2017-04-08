@@ -13,7 +13,7 @@ For more information see https://en.wikipedia.org/wiki/Connect_Four.
 Technologies
 ----------------------
 
-<img src="https://www.scala-lang.org/resources/img/smooth-spiral.png" height="50"> <img src="https://www.playframework.com/assets/images/logos/play_icon_full_color.png" height="50"> <img src="https://cdn.travis-ci.org/images/logos/TravisCI-Mascot-1-20feeadb48fc2492ba741d89cb5a5c8a.png" height="50">
+<img src="https://lh5.googleusercontent.com/fgH5l7gt1kMx02oEONEbUzwKn0-1rujRUyNCMAgsN5DBokQctIQf9E8pgT3H9IOykr7t3oTZ=w1920-h971" height="50"> <img src="https://lh3.googleusercontent.com/DkwlySczg1Aktf9_3yu6X2R4QJJ-7bU63AODx95Kda2WzUsp3Y_3DwEZ9rzJvuZX-CdHekWk=w1920-h971" height="50"> <img src="https://lh4.googleusercontent.com/uP-fIy47ob4vI2NyRsMbHUcAz2nIOl35ALjqqJozmCIoIo_9xfOdfHifIT8N2oDSJszPktwx=w1920-h971" height="50">
 
 License
 -------

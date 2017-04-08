@@ -13,4 +13,7 @@ class PlayerSpec extends FlatSpec with Matchers {
   "The name of a Player" should "be a String" in {
     Player("Mark").name shouldBe a[String]
   }
+
+
+
 }

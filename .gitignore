@@ -15,8 +15,6 @@ bin/
 /RUNNING_PID
 
 # Play
-LICENSE
-README.md
 project/target
 project/project
 
