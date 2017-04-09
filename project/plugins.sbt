@@ -19,6 +19,14 @@ addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.6")
 
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.8.0")
 
-addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.0")
+// Coverage
 
-addSbtPlugin("com.codacy" % "sbt-codacy-coverage" % "1.3.8")
+resolvers += Classpaths.sbtPluginReleases
+
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.0.1")
+
+addSbtPlugin("org.scoverage" % "sbt-coveralls" % "1.0.0")
+
+
+//addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.0")
+//addSbtPlugin("com.codacy" % "sbt-codacy-coverage" % "1.3.8")
