@@ -10,6 +10,8 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
+
   - sbt coverageReport
   - sbt coverageAggregate
+  - export CODACY_PROJECT_TOKEN=a23ff03e0ab24a318112691145ac0b0c
   - sbt codacyCoverage
