@@ -1,14 +1,16 @@
 ConnectFourWeb
 =====================================
+ConnectFourWeb is a web implementation of the game Connect Four.
+
+For more information see https://en.wikipedia.org/wiki/Connect_Four.
 
 [![Build Status](https://travis-ci.org/danielfranze/ConnectFourWeb.svg?branch=master)](https://travis-ci.org/danielfranze/ConnectFourWeb)
 
-About ConnectFourWeb
+Installation
 --------------------
 
-This project is a web implementation of the game Connect Four.
-
-For more information see https://en.wikipedia.org/wiki/Connect_Four.
+1. Clone this Repository
+2. Open it with IntelliJ IDEA (Scala plugin needed!)
 
 Technologies
 ----------------------
