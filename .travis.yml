@@ -5,8 +5,8 @@ scala:
   - 2.11.8
 
 script:
-  - sbt clean coverage test coverageReport &&
-  - sbt coverageReport &&
+  - sbt clean coverage test coverageReport
+  - sbt coverageReport
   - sbt coverageAggregate
 
 after_success:
