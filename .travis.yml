@@ -6,6 +6,7 @@ scala:
 script:
   - sbt clean coverage test
   - sbt coverageReport
+  - sbt coverageAggregate
 after_success:
   - export CODACY_PROJECT_TOKEN=a23ff03e0ab24a318112691145ac0b0c
   - sbt codacyCoverage
