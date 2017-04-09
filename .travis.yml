@@ -4,10 +4,9 @@ jdk:
 scala:
   - 2.11.8
 script:
-- sbt clean coverage test
-- sbt coverageReport
-- sbt coverageAggregate
+  - sbt clean coverage test
+  - sbt coverageReport
 after_success:
-- export CODACY_PROJECT_TOKEN=a23ff03e0ab24a318112691145ac0b0c
-- sbt codacyCoverage
-- sbt scalastyle
+  - export CODACY_PROJECT_TOKEN=a23ff03e0ab24a318112691145ac0b0c
+  - sbt codacyCoverage
+  - sbt scalastyle
