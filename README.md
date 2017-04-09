@@ -2,7 +2,7 @@ ConnectFourWeb
 =====================================
 ConnectFourWeb is a web implementation of the game Connect Four.
 
-For more information see https://en.wikipedia.org/wiki/Connect_Four.
+See also: https://en.wikipedia.org/wiki/Connect_Four.
 
 [![Build Status](https://travis-ci.org/danielfranze/ConnectFourWeb.svg?branch=master)](https://travis-ci.org/danielfranze/ConnectFourWeb)
 
@@ -19,5 +19,4 @@ Technologies
 
 License
 -------
-ConnectFourWeb is released under the terms of the MIT license. See [COPYING](COPYING) for more
-information or see https://opensource.org/licenses/MIT.
+ConnectFourWeb is released under the terms of the MIT license. See https://opensource.org/licenses/MIT for more information.
