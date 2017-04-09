@@ -4,7 +4,7 @@ ConnectFourWeb is a web implementation of the game Connect Four.
 
 See also: https://en.wikipedia.org/wiki/Connect_Four.
 
-[![Build Status](https://travis-ci.org/danielfranze/ConnectFourWeb.svg?branch=master)](https://travis-ci.org/danielfranze/ConnectFourWeb)
+[![Build Status](https://travis-ci.org/danielfranze/ConnectFourWeb.svg?branch=master)](https://travis-ci.org/danielfranze/ConnectFourWeb) [![codecov](https://codecov.io/gh/danielfranze/ConnectFourWeb/branch/master/graph/badge.svg)](https://codecov.io/gh/danielfranze/ConnectFourWeb)
 
 Installation
 --------------------
