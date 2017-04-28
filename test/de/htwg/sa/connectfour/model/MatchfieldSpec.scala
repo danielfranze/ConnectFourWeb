@@ -12,7 +12,7 @@ class MatchfieldSpec extends WordSpec with Matchers {
       val matchfield = new Matchfield(5,5)
       "empty" in {
 
-        for(row <- matrix.matchfield) {
+        for(row <- matchfield.matrix) {
           for(column <- row) {
             column should be("empty")
           }
