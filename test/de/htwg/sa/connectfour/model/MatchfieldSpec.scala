@@ -9,7 +9,7 @@ class MatchfieldSpec extends WordSpec with Matchers {
 
   "The Matchfield" when {
     "starting" should {
-      val matchfield = new Matchfield(5,5)
+      val matchfield = new Matchfield(6,7)
       "empty" in {
 
         for(row <- matchfield.matrix) {
@@ -20,6 +20,14 @@ class MatchfieldSpec extends WordSpec with Matchers {
 
       }
     }
+    "a Player has vertical won" should{
+      val matchfield = new Matchfield(9,9)
+      for(column <- 0 to 4){
+        matchfield.matrix(0).update(column, "player")
+      }
+      "the return value" in {
+        matchfield.areFourConnected("player") should be(true)
+      }
+    }
   }
-
 }
