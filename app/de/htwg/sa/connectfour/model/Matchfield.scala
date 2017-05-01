@@ -26,7 +26,7 @@ class Matchfield(row: Int, column: Int){
     for(row <- matrix) {
       printMatrix += "+" + ("---+" * column) + "\n|"
       for(column <- row){
-        if(column == "empty") printMatrix += "   |" else printMatrix += (column + " |")
+        if(column == "empty") printMatrix += "   |" else printMatrix += (" " + column + " |")
       }
       printMatrix += "\n"
     }

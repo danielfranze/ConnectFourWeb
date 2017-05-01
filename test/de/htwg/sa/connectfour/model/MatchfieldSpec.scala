@@ -17,6 +17,10 @@ class MatchfieldSpec extends WordSpec with Matchers {
           }
         }
       }
+      "a String who represents the matrix" in {
+        val expectedString = (("+" + ("---+" * 7) + "\n|" + ("   |"*7) + "\n") *6) + ("+" + ("---+" * 7) + "\n")
+         matchfield.toString should be(expectedString)
+      }
     }
     "a Player has vertical won" should{
       val matchfield = new Matchfield(numberOfRows,numberOfColumns)
