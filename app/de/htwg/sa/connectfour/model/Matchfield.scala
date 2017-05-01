@@ -21,6 +21,10 @@ class Matchfield(row: Int, column: Int){
 
   }
 
+  def setElementinMatchfield(row:Int, column:Int, newValue:String): Unit ={
+    matrix(row).update(column, newValue)
+  }
+
   override def toString: String = {
     var printMatrix = ""
     for(row <- matrix) {

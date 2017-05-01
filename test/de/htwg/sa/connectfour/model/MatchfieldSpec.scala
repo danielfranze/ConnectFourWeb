@@ -33,5 +33,16 @@ class MatchfieldSpec extends WordSpec with Matchers {
         matchfield.areFourConnected("player") should be(true)
       }
     }
+    "a Player set a value" should{
+      val matchfield = new Matchfield(numberOfRows,numberOfColumns)
+      matchfield.setElementinMatchfield(0,0, "1")
+      matchfield.setElementinMatchfield(1,1, "2")
+      "the value" in {
+        matchfield.matrix(0)(0) should be("1")
+        matchfield.matrix(1)(1) should be("2")
+        matchfield.matrix(0)(1) should be("empty")
+      }
+
+    }
   }
 }

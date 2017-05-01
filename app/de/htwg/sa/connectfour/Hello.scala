@@ -1,20 +1,24 @@
 package de.htwg.sa.connectfour
 
 import de.htwg.sa.connectfour.model.{Matchfield, Player}
+import de.htwg.sa.connectfour.controller.Controller
+import de.htwg.sa.connectfour.view.Tui
+
+import scala.io.StdIn.readLine
 
 object Hello extends App{
+  val (rows, columns) = (6,7)
+  val player1 = Player(1, "player1")
+  val player2 = Player(2, "player2")
+  val controller = new Controller(new Matchfield(rows, columns), player1, player2, player1)
+  val tui = new Tui(controller)
+  controller.notifyObservers()
 
-  val player = Player(1, "Your Name")
-  println("Hello, " + player.name)
+    var input: String = ""
 
-  val matrix1 = new Matchfield(6,7)
-  matrix1.matrix(0).update(0, "1")
-  matrix1.matrix(0).update(1, "1")
-  matrix1.matrix(0).update(2, "1")
-  matrix1.matrix(0).update(3, "1")
-
-  matrix1.matrix(1).update(2, "2")
-  println(matrix1.toString())
-  println(matrix1.areFourConnected("1"))
+    do {
+      input = readLine()
+      tui.processInputLine(input)
+    } while (input != "q")
 
 }
