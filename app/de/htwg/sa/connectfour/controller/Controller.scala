@@ -9,6 +9,7 @@ class Controller(var matchfield:Matchfield, var player1:Player, var player2:Play
   var currentPlayer:Player = player1
 
   def createEmptyMatchfield():Unit = {
+    gameIsWon = false
     val (rows, columns)  = (6,7)
     matchfield = new Matchfield(rows,columns)
     notifyObservers()
