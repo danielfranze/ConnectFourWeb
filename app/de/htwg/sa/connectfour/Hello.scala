@@ -10,7 +10,7 @@ object Hello extends App{
   val (rows, columns) = (6,7)
   val player1 = Player(1, "player1")
   val player2 = Player(2, "player2")
-  val controller = new Controller(new Matchfield(rows, columns), player1, player2, player1)
+  val controller = new Controller(new Matchfield(rows, columns), player1, player2)
   val tui = new Tui(controller)
   controller.notifyObservers()
 

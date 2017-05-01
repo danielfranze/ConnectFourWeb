@@ -3,7 +3,10 @@ package de.htwg.sa.connectfour.controller
 import de.htwg.sa.connectfour.model.{Matchfield, Player}
 import de.htwg.sa.connectfour.util.Observable
 
-class Controller(var matchfield:Matchfield, var player1:Player, var player2:Player, var currentPlayer:Player) extends Observable{
+class Controller(var matchfield:Matchfield, var player1:Player, var player2:Player) extends Observable{
+
+  var gameIsWon:Boolean = false
+  var currentPlayer:Player = player1
 
   def createEmptyMatchfield():Unit = {
     val (rows, columns)  = (6,7)
@@ -18,15 +21,12 @@ class Controller(var matchfield:Matchfield, var player1:Player, var player2:Play
     notifyObservers()
   }
 
-  def areFourConnected(player: String): Unit ={
-    matchfield.areFourConnected(player)
-    notifyObservers()
-  }
-
-
   def set(row: Int, column: Int): Unit = {
-    matchfield.setElementinMatchfield(row, column, currentPlayer.number.toString)
-    if(currentPlayer == player1) currentPlayer = player2 else currentPlayer = player1
+    if(!gameIsWon){
+      matchfield.setElementinMatchfield(row, column, currentPlayer.number.toString)
+      gameIsWon = matchfield.areFourConnected(currentPlayer.number.toString)
+      if(currentPlayer == player1) currentPlayer = player2 else currentPlayer = player1
+    }
     notifyObservers()
   }
 

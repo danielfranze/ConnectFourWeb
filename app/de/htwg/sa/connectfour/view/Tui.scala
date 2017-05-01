@@ -20,5 +20,7 @@ class Tui(controller: Controller) extends Observer{
     }
   }
 
-  override def update: Unit =  println(controller.matchfieldToString)
+  override def update: Unit =  {
+    if(controller.gameIsWon) println("Game is won!") else println(controller.matchfieldToString)
+  }
 }
