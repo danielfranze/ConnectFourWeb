@@ -18,7 +18,9 @@ class MatchfieldSpec extends WordSpec with Matchers {
         }
       }
       "a String who represents the matrix" in {
-        val expectedString = (("+" + ("---+" * 7) + "\n|" + ("   |"*7) + "\n") *6) + ("+" + ("---+" * 7) + "\n")
+        val expectedString = (("+" + ("---+" * numberOfColumns) + "\n|" +
+                              ("   |"*numberOfColumns) + "\n") *numberOfRows) +
+                              ("+" + ("---+" * numberOfColumns) + "\n")
          matchfield.toString should be(expectedString)
       }
     }
