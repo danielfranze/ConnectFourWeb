@@ -24,10 +24,19 @@ class MatchfieldSpec extends WordSpec with Matchers {
          matchfield.toString should be(expectedString)
       }
     }
+    "a Player has horizontal won" should{
+      val matchfield = new Matchfield(numberOfRows,numberOfColumns)
+      for(column <- 0 to 3){
+        matchfield.matrix(0).update(column, "player")
+      }
+      "the return value" in {
+        matchfield.areFourConnected("player") should be(true)
+      }
+    }
     "a Player has vertical won" should{
       val matchfield = new Matchfield(numberOfRows,numberOfColumns)
-      for(column <- 0 to 4){
-        matchfield.matrix(0).update(column, "player")
+      for(row <- 0 to 3){
+        matchfield.matrix(row).update(0, "player")
       }
       "the return value" in {
         matchfield.areFourConnected("player") should be(true)
