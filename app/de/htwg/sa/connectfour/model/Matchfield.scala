@@ -17,7 +17,17 @@ class Matchfield(row: Int, column: Int){
       `Was the game won?`
     }
 
-    if(horizontalCheck()) true else false
+    def verticalCheck(): Boolean ={
+      var winCounter = 0
+      var `Was the game won?` = false
+      for(currentColumn <- 0 until column) for(currentRow <- 0 until row){
+        if(matrix(currentRow)(currentColumn) == player) winCounter += 1 else winCounter = 0
+        if(winCounter == winNumber){`Was the game won?` = true}
+      }
+      `Was the game won?`
+    }
+
+    if(horizontalCheck() || verticalCheck()) true else false
 
   }
 

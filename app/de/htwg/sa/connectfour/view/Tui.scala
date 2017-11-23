@@ -7,6 +7,7 @@ import de.htwg.sa.connectfour.util.Observer
 class Tui(controller: Controller) extends Observer{
 
   controller.add(this)
+  private val winningMessage = "\nGame is won!"
 
   def processInputLine(input: String):Unit = {
     input match {
@@ -21,6 +22,6 @@ class Tui(controller: Controller) extends Observer{
   }
 
   override def update: Unit =  {
-    if(controller.gameIsWon) println("Game is won!") else println(controller.matchfieldToString)
+    if(controller.gameIsWon) println(controller.matchfieldToString + winningMessage) else println(controller.matchfieldToString)
   }
 }
