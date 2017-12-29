@@ -32,9 +32,18 @@ class Matchfield(row: Int, column: Int){
   }
 
   def setElementinMatchfield(row:Int, column:Int, newValue:String): Boolean ={
-    if(matrix(row)(column) == "empty"){
-      matrix(row).update(column, newValue)
-      true
+    if(matrix(row)(column) == "empty") {
+      try{
+        if (matrix(row + 1)(column) != "empty") {
+          matrix(row).update(column, newValue)
+          true
+        } else {
+          false
+        }
+      } catch {
+        case e: ArrayIndexOutOfBoundsException => matrix(row).update(column, newValue)
+          true
+      }
     } else {
       false
     }
