@@ -46,6 +46,8 @@ class MatchfieldSpec extends WordSpec with Matchers {
       val matchfield = new Matchfield(numberOfRows,numberOfColumns)
       val result_true = matchfield.setElementinMatchfield(5,0, "1")
       val result_false = matchfield.setElementinMatchfield(5,0, "1")
+      val result_true_inner = matchfield.setElementinMatchfield(4,0, "1")
+      val result_false_inner = matchfield.setElementinMatchfield(1,0, "1")
       matchfield.setElementinMatchfield(5,2, "1")
       matchfield.setElementinMatchfield(5,1, "2")
       "the value" in {
@@ -56,6 +58,8 @@ class MatchfieldSpec extends WordSpec with Matchers {
       "the boolean" in {
         result_true should be(true)
         result_false should be(false)
+        result_true_inner should be(true)
+        result_false_inner should be(false)
       }
 
     }
