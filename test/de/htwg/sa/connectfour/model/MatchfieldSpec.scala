@@ -19,9 +19,9 @@ class MatchfieldSpec extends WordSpec with Matchers {
       }
       "a String who represents the matrix" in {
         val expectedString = (("+" + ("---+" * numberOfColumns) + "\n|" +
-                              ("   |"*numberOfColumns) + "\n") *numberOfRows) +
-                              ("+" + ("---+" * numberOfColumns) + "\n")
-         matchfield.toString should be(expectedString)
+          ("   |"*numberOfColumns) + "\n") *numberOfRows) +
+          ("+" + ("---+" * numberOfColumns) + "\n")
+        matchfield.toString should be(expectedString)
       }
     }
     "a Player has horizontal won" should{
@@ -44,14 +44,14 @@ class MatchfieldSpec extends WordSpec with Matchers {
     }
     "a Player set a value" should{
       val matchfield = new Matchfield(numberOfRows,numberOfColumns)
-      val result_true = matchfield.setElementinMatchfield(2,2, "1")
-      val result_false = matchfield.setElementinMatchfield(2,2, "1")
-      matchfield.setElementinMatchfield(0,0, "1")
-      matchfield.setElementinMatchfield(1,1, "2")
+      val result_true = matchfield.setElementinMatchfield(5,0, "1")
+      val result_false = matchfield.setElementinMatchfield(5,0, "1")
+      matchfield.setElementinMatchfield(5,2, "1")
+      matchfield.setElementinMatchfield(5,1, "2")
       "the value" in {
-        matchfield.matrix(0)(0) should be("1")
-        matchfield.matrix(1)(1) should be("2")
-        matchfield.matrix(0)(1) should be("empty")
+        matchfield.matrix(5)(2) should be("1")
+        matchfield.matrix(5)(1) should be("2")
+        matchfield.matrix(5)(4) should be("empty")
       }
       "the boolean" in {
         result_true should be(true)
