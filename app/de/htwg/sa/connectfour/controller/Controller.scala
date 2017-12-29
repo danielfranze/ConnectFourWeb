@@ -24,9 +24,10 @@ class Controller(var matchfield:Matchfield, var player1:Player, var player2:Play
 
   def set(row: Int, column: Int): Unit = {
     if(!gameIsWon){
-      matchfield.setElementinMatchfield(row, column, currentPlayer.number.toString)
-      gameIsWon = matchfield.areFourConnected(currentPlayer.number.toString)
-      if(currentPlayer == player1 && !gameIsWon) currentPlayer = player2 else currentPlayer = player1
+      if(matchfield.setElementinMatchfield(row, column, currentPlayer.number.toString)){
+        gameIsWon = matchfield.areFourConnected(currentPlayer.number.toString)
+        if(currentPlayer == player1 && !gameIsWon) currentPlayer = player2 else currentPlayer = player1
+      }
     }
     notifyObservers()
   }

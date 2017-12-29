@@ -31,8 +31,14 @@ class Matchfield(row: Int, column: Int){
 
   }
 
-  def setElementinMatchfield(row:Int, column:Int, newValue:String): Unit ={
-    matrix(row).update(column, newValue)
+  def setElementinMatchfield(row:Int, column:Int, newValue:String): Boolean ={
+    if(matrix(row)(column) == "empty"){
+      matrix(row).update(column, newValue)
+      true
+    } else {
+      false
+    }
+
   }
 
   override def toString: String = {
