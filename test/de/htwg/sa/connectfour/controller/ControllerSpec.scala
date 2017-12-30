@@ -29,7 +29,7 @@ class ControllerSpec extends WordSpec with Matchers {
         val expectedString = (("+" + ("---+" * columns) + "\n|" +
           ("   |"*columns) + "\n") *rows) +
           ("+" + ("---+" * columns) + "\n")
-        test_controller.matchfield.toString should be(expectedString)
+        test_controller.matchfieldToString should be(expectedString)
       }
     }
     "set a cell" should{
