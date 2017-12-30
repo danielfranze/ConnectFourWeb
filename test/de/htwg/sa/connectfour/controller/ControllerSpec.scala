@@ -34,7 +34,7 @@ class ControllerSpec extends WordSpec with Matchers {
     }
     "set a cell" should{
       test_controller.createEmptyMatchfield()
-      "players" in{
+      "the value" in{
         test_controller.matchfield.matrix(5)(0) should be("empty")
         test_controller.set(5,0)
         test_controller.matchfield.matrix(5)(0) should be("1")
