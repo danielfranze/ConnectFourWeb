@@ -24,8 +24,9 @@ class HomeController @Inject() extends Controller {
   val controller = new de.htwg.sa.connectfour.controller.Controller(new Matchfield(rows, columns), player1, player2)
 
   def index = Action {
-    var test:String = controller.currentPlayer.name
     controller.set(5,0)
+    val test:String = controller.currentPlayer.name
+
     controller.notifyObservers()
     Ok(views.html.index(s"Current Player: $test"))
 
