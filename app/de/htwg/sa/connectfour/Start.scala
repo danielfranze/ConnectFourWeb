@@ -6,7 +6,7 @@ import de.htwg.sa.connectfour.view.Tui
 
 import scala.io.StdIn.readLine
 
-object Hello extends App{
+object Start extends App{
   val (rows, columns) = (6,7)
   val player1 = Player(1, "player1")
   val player2 = Player(2, "player2")
