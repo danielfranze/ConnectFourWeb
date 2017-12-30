@@ -25,5 +25,16 @@ class ControllerSpec extends WordSpec with Matchers {
         sum should be(columns)
       }
     }
+    "set a cell" should{
+      test_controller.createEmptyMatchfield()
+      "players" in{
+        test_controller.matchfield.matrix(5)(0) should be("empty")
+        test_controller.set(5,0)
+        test_controller.matchfield.matrix(5)(0) should be("1")
+        test_controller.matchfield.matrix(5)(2) should be("empty")
+        test_controller.set(5,2)
+        test_controller.matchfield.matrix(5)(2) should be("2")
+      }
+    }
   }
 }

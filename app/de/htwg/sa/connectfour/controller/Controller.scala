@@ -3,7 +3,7 @@ package de.htwg.sa.connectfour.controller
 import de.htwg.sa.connectfour.model.{Matchfield, Player}
 import de.htwg.sa.connectfour.util.Observable
 
-class Controller(var matchfield:Matchfield, var player1:Player, var player2:Player) extends Observable{
+class Controller(var matchfield:Matchfield, val player1:Player, val player2:Player) extends Observable{
 
   var gameIsWon:Boolean = false
   var currentPlayer:Player = player1
@@ -12,13 +12,6 @@ class Controller(var matchfield:Matchfield, var player1:Player, var player2:Play
     gameIsWon = false
     val (rows, columns)  = (6,7)
     matchfield = new Matchfield(rows,columns)
-    notifyObservers()
-  }
-
-  def createPlayers(nameOfplayer1: String, nameOfplayer2: String): Unit ={
-    player1 = Player(1, nameOfplayer1)
-    player2 = Player(2, nameOfplayer1)
-    currentPlayer = player1
     notifyObservers()
   }
 
