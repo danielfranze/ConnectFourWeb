@@ -24,6 +24,13 @@ class ControllerSpec extends WordSpec with Matchers {
         }
         sum should be(columns)
       }
+      "a String who represents the matrix" in {
+        test_controller.createEmptyMatchfield()
+        val expectedString = (("+" + ("---+" * columns) + "\n|" +
+          ("   |"*columns) + "\n") *rows) +
+          ("+" + ("---+" * columns) + "\n")
+        test_controller.matchfield.toString should be(expectedString)
+      }
     }
     "set a cell" should{
       test_controller.createEmptyMatchfield()
@@ -36,5 +43,6 @@ class ControllerSpec extends WordSpec with Matchers {
         test_controller.matchfield.matrix(5)(2) should be("2")
       }
     }
+
   }
 }
