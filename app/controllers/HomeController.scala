@@ -28,7 +28,7 @@ class HomeController @Inject() extends Controller {
   val controller = new de.htwg.sa.connectfour.controller.Controller(new Matchfield(rows, columns), player1, player2)
 
 
-  def matrixToJsonString:mutable.HashMap[String, String] = {
+  def matrixToHashMap:mutable.HashMap[String, String] = {
     val matrixList = new mutable.HashMap[String, String]()
     for(row <- 0 to 5)
       for(column <- 0 to 6){
@@ -38,8 +38,9 @@ class HomeController @Inject() extends Controller {
   }
 
   def matrixToJson:JsValue = {
-    Json.toJson(matrixToJsonString)
+    Json.toJson(matrixToHashMap)
   }
+
 
   def index = Action {
     controller.set(5, 0)
