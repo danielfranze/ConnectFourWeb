@@ -2,7 +2,9 @@
  * This template takes a single argument, a String containing a
  * message to display.
  *@
-@(message: String)
+@import play.api.libs.json.JsValue
+@(message: String, current_player: String, matrix: String)
+
 
 @*
  * Call the `main` template with two arguments. The first
@@ -15,6 +17,7 @@
      * Get an `Html` object by calling the built-in Play welcome
      * template and passing a `String` message.
      *@
-    @welcome(message, style = "scala")
+    @welcome(message, current_player, matrix)
+
 
 }

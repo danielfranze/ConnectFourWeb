@@ -38,16 +38,17 @@ class HomeController @Inject() extends Controller {
   }
 
   def matrixToJson:JsValue = {
-    Json.toJson(matrixToHashMap)
+    Json.toJson(matrixToHashMap.toMap)
   }
 
 
   def index = Action {
     controller.set(5, 0)
-    val test: String = controller.currentPlayer.name
-    val test1 = matrixToJson
+    val current_player: String = controller.currentPlayer.name
+    val current_matrix = matrixToJson.toString()
     controller.notifyObservers()
-    Ok(views.html.index(s"Current Player: $test  $test1"))
+    //Ok(views.html.index(s"Current Player: $test  $test1"))
+    Ok(views.html.index(s"Current Player: $current_player", current_player, s"$current_matrix"))
   }
 
 
