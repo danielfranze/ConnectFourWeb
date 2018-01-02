@@ -44,6 +44,7 @@ class HomeController @Inject() extends Controller {
 
   def index = Action {
     controller.set(5, 0)
+    controller.set(5, 1)
     val current_player: String = controller.currentPlayer.name
     val current_matrix = matrixToJson.toString()
     controller.notifyObservers()

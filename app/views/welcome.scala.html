@@ -1,4 +1,3 @@
-@import play.api.libs.json.JsValue
 @(message: String, current_player: String, matrix: String,style: String = "scala")
 
 
@@ -13,7 +12,6 @@
 <script language="javascript">
         var ins = 1;
 
-
         function changeImage(index) {
 
             if(ins === 1)
@@ -26,7 +24,7 @@
                 document.getElementById(index).src="@routes.Assets.versioned("images/red.png")";
                 ins = 1;
             }
-            showMatrix();
+            //showMatrix();
         }
 
         function showMatrix(){
@@ -49,7 +47,6 @@
 
         window.onload = function() {
             showMatrix();
-            test();
         }
 
 </script>
