@@ -10,11 +10,13 @@
 </section>
 
 <script language="javascript">
-        var ins = 1;
-
+        //var ins = 1;
+        var current_cell = ""
+        var current_matrix = '@matrix'
         function changeImage(index) {
-
-            if(ins === 1)
+            current_cell = index;
+            //alert(current_matrix.replace(/&quot;/g, '\"'));
+            /*if(ins === 1)
             {
                 document.getElementById(index).src="@routes.Assets.versioned("images/yellow.svg")";
                 ins = 2;
@@ -23,12 +25,12 @@
             {
                 document.getElementById(index).src="@routes.Assets.versioned("images/red.svg")";
                 ins = 1;
-            }
-            //showMatrix();
+            }*/
+            init()
         }
 
         function showMatrix(){
-            var matrixJson = JSON.parse('@matrix'.replace(/&quot;/g, '\"'));
+            var matrixJson = JSON.parse(current_matrix.replace(/&quot;/g, '\"'));
             for (var key in matrixJson){
                 var attrName = key;
                 var attrValue = matrixJson[key];
@@ -52,7 +54,7 @@
 </script>
 
 <div id="content" class="wrapper doc">
-    <h2>WebSocket Test</h2>
+        <!--<h2>WebSocket Test</h2>-->
     <div id="output"></div>
 
     <div class="container">

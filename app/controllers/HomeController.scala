@@ -26,19 +26,6 @@ import akka.stream._
 import akka.actor._
 
 
-
-object MyWebSocketActor {
-  def props(out: ActorRef) = Props(new MyWebSocketActor(out))
-}
-
-class MyWebSocketActor(out: ActorRef) extends Actor {
-  def receive = {
-    case msg: String =>
-      out ! ("I received your message: " + msg)
-  }
-}
-
-
 @Singleton
 class HomeController @Inject()(implicit system: ActorSystem, materializer: Materializer) extends Controller {
 
@@ -47,6 +34,22 @@ class HomeController @Inject()(implicit system: ActorSystem, materializer: Mater
   val player2 = Player(2, "player2")
   val controller = new de.htwg.sa.connectfour.controller.Controller(new Matchfield(rows, columns), player1, player2)
 
+  object MyWebSocketActor {
+    def props(out: ActorRef) = Props(new MyWebSocketActor(out))
+  }
+
+  class MyWebSocketActor(out: ActorRef) extends Actor {
+    def receive = {
+      case msg:String => {
+        controller.set(msg.charAt(0).toInt - 48, msg.charAt(1).toInt - 48)
+        controller.notifyObservers()
+        out ! (matrixToJson.toString())
+      }
+    }
+  }
+  def socket = WebSocket.accept[String, String] { request =>
+    ActorFlow.actorRef( out => MyWebSocketActor.props(out))
+  }
 
   def matrixToHashMap:mutable.HashMap[String, String] = {
     val matrixList = new mutable.HashMap[String, String]()
@@ -62,8 +65,8 @@ class HomeController @Inject()(implicit system: ActorSystem, materializer: Mater
   }
 
   def index = Action {
-    controller.set(5, 0)
-    controller.set(5, 1)
+    //controller.set(5, 0)
+    //controller.set(5, 1)
     val current_player: String = controller.currentPlayer.name
     val current_matrix = matrixToJson.toString()
     controller.notifyObservers()
@@ -72,14 +75,6 @@ class HomeController @Inject()(implicit system: ActorSystem, materializer: Mater
     Ok(views.html.index(s"Current Player: $current_player", current_player, s"$current_matrix"))
 
   }
-
-  def socket = WebSocket.accept[String, String] { request =>
-    ActorFlow.actorRef(out => MyWebSocketActor.props(out))
-
-  }
-
-
-
 
 
 }

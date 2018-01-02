@@ -18,19 +18,21 @@ function testWebSocket()
 
 function onOpen(evt)
 {
-    writeToScreen("CONNECTED");
-    doSend("WebSocket rocks");
+    //writeToScreen("CONNECTED");
+    doSend(current_cell);
 }
 
 function onClose(evt)
 {
-    writeToScreen("DISCONNECTED");
+    //writeToScreen("DISCONNECTED");
 }
 
 function onMessage(evt)
 {
-    writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
+    current_matrix = evt.data;
+    //writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
     websocket.close();
+    showMatrix();
 }
 
 function onError(evt)
@@ -40,7 +42,7 @@ function onError(evt)
 
 function doSend(message)
 {
-    writeToScreen("SENT: " + message);
+    //writeToScreen("SENT: " + message);
     websocket.send(message);
 }
 
@@ -52,4 +54,6 @@ function writeToScreen(message)
     output.appendChild(pre);
 }
 
-window.addEventListener("load", init, false);
+//window.addEventListener("load", init, false);
+//window.addEventListener("click", init, false);
+//window.addEventListener("click", function(){ alert("Hello World!"); });
