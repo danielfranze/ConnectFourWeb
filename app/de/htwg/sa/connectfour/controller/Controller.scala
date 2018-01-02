@@ -19,7 +19,11 @@ class Controller(var matchfield:Matchfield, val player1:Player, val player2:Play
     if(!gameIsWon){
       if(matchfield.setElementinMatchfield(row, column, currentPlayer.number.toString)){
         gameIsWon = matchfield.areFourConnected(currentPlayer.number.toString)
-        if(currentPlayer == player1 && !gameIsWon) currentPlayer = player2 else currentPlayer = player1
+        if(currentPlayer == player1 && !gameIsWon){
+          currentPlayer = player2
+        } else if(currentPlayer == player2 && !gameIsWon){
+        currentPlayer = player1
+        }
       }
     }
     notifyObservers()

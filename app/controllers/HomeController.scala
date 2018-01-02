@@ -57,6 +57,19 @@ class HomeController @Inject()(implicit system: ActorSystem, materializer: Mater
       for(column <- 0 to 6){
         matrixList.put(s"$row$column", controller.matchfield.matrix(row)(column))
       }
+
+    if(controller.currentPlayer.number == 1){
+      matrixList.put("player", "Yellow")
+    } else if(controller.currentPlayer.number == 2){
+      matrixList.put("player", "Red")
+    }
+
+    if(controller.gameIsWon){
+      matrixList.put("won", "true")
+    } else {
+      matrixList.put("won", "false")
+    }
+
     matrixList
   }
 
