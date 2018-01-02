@@ -10,6 +10,8 @@ import java.util.{HashMap, Map}
 import com.fasterxml.jackson.databind.JsonNode
 import de.htwg.sa.connectfour.Start.controller
 import de.htwg.sa.connectfour.model.{Matchfield, Player}
+import play.api.libs.EventSource
+import play.api.libs.iteratee.Concurrent
 import play.api.libs.json.{JsObject, JsValue, Json}
 
 import scala.collection.mutable
@@ -19,8 +21,26 @@ import collection.mutable.HashMap
 
 
 
+import play.api.libs.streams._
+import akka.stream._
+import akka.actor._
+
+
+
+object MyWebSocketActor {
+  def props(out: ActorRef) = Props(new MyWebSocketActor(out))
+}
+
+class MyWebSocketActor(out: ActorRef) extends Actor {
+  def receive = {
+    case msg: String =>
+      out ! ("I received your message: " + msg)
+  }
+}
+
+
 @Singleton
-class HomeController @Inject() extends Controller {
+class HomeController @Inject()(implicit system: ActorSystem, materializer: Materializer) extends Controller {
 
   val (rows, columns) = (6,7)
   val player1 = Player(1, "player1")
@@ -41,7 +61,6 @@ class HomeController @Inject() extends Controller {
     Json.toJson(matrixToHashMap.toMap)
   }
 
-
   def index = Action {
     controller.set(5, 0)
     controller.set(5, 1)
@@ -49,21 +68,18 @@ class HomeController @Inject() extends Controller {
     val current_matrix = matrixToJson.toString()
     controller.notifyObservers()
     //Ok(views.html.index(s"Current Player: $test  $test1"))
+
     Ok(views.html.index(s"Current Player: $current_player", current_player, s"$current_matrix"))
+
+  }
+
+  def socket = WebSocket.accept[String, String] { request =>
+    ActorFlow.actorRef(out => MyWebSocketActor.props(out))
+
   }
 
 
 
-    //var test:Map[String, String] = new HashMap()
-    //test.put("id", "Daniel")
-    /*val json: JsValue = play.api.libs.json.Json.parse("""
-  {
-    "name" : "Watership Down",
-    ""
-  }
-  """)
-    Ok(Json.toJson(json))
 
-  }*/
 
 }
