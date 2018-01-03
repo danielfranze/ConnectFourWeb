@@ -5,16 +5,17 @@
 
 <section id="top">
     <div class="wrapper" >
-        <h1 id="player" style="float:none !important;"></h1>
+        <h1 id="player" style="float:none !important;">Start</h1>
     </div>
 </section>
 
 <script language="javascript">
 
-        var current_cell = ""
-        var current_matrix = '@matrix'
+        var current_cell = "00"
+        var current_matrix = ''
         var current_player;
         var game_is_won;
+        var milliseconds = 1000;
         function changeImage(index) {
             current_cell = index;
             init()
@@ -46,8 +47,15 @@
         }
 
         window.onload = function() {
+            init()
             showMatrix();
         }
+
+
+        window.setInterval(function() {
+            init();
+            showMatrix();
+        }, milliseconds);
 
 </script>
 
