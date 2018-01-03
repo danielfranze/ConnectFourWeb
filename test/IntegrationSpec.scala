@@ -14,7 +14,7 @@ class IntegrationSpec extends PlaySpec with OneServerPerTest with OneBrowserPerT
 
       go to ("http://localhost:" + port)
 
-      pageSource must include ("Current Player:")
+      pageSource must include ("<h1 id=\"player\" style=\"float:none !important;\">")
     }
   }
 }
