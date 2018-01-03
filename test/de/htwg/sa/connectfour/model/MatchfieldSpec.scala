@@ -4,7 +4,6 @@ import org.scalatest._
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
-import scala.collection.mutable
 
 @RunWith(classOf[JUnitRunner])
 class MatchfieldSpec extends WordSpec with Matchers {
@@ -78,10 +77,10 @@ class MatchfieldSpec extends WordSpec with Matchers {
       "the return value of right bot victory" in {
         val matchfield = new Matchfield(numberOfRows,numberOfColumns)
         val matchfield2 = new Matchfield(numberOfRows,numberOfColumns)
-        
+
         val rightBot = List((5,4,"p1"),(5,3,"p2"),(5,2,"p1"),(4,3,"p2"),(4,2,"p1"),
-                             (5,5,"p2"),(5,1,"p1"),(4,4,"p2"),(3,2,"p1"),(3,3,"p2"),
-                             (5,6,"p1"),(2,2,"p2"))
+          (5,5,"p2"),(5,1,"p1"),(4,4,"p2"),(3,2,"p1"),(3,3,"p2"),
+          (5,6,"p1"),(2,2,"p2"))
         for(tupleElement <- rightBot){
           matchfield.setElementinMatchfield(tupleElement._1,tupleElement._2, tupleElement._3)
         }
