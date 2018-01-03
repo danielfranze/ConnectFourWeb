@@ -75,7 +75,7 @@ class Matchfield(row: Int, column: Int){
   def setElementinMatchfield(row:Int, column:Int, newValue:String): Boolean ={
     lastMoveRow = row
     lastMoveColumn = column
-    //println("row: " + row + " column: " + column + " value: " + newValue)
+    println("row: " + row + " column: " + column + " value: " + newValue)
     if(matrix(row)(column) == "empty") {
       try{
         if (matrix(row + 1)(column) != "empty") {
