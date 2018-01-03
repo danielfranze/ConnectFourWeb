@@ -24,7 +24,7 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
       status(home) mustBe OK
       contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include ("Current Player:")
+      contentAsString(home) must include ("<h1 id=\"player\" style=\"float:none !important;\">")
     }
 
   }
