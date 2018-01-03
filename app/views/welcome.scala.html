@@ -15,7 +15,7 @@
         var current_matrix = ''
         var current_player;
         var game_is_won;
-        var milliseconds = 1000;
+        var milliseconds = 1500;
         function changeImage(index) {
             current_cell = index;
             init()
@@ -45,16 +45,17 @@
                 document.getElementById("player").innerHTML = "" + current_player + " won the game!";
             }
         }
-
-        window.onload = function() {
-            init()
+        function load(){
+            init();
             showMatrix();
+        }
+        window.onload = function() {
+            load()
         }
 
 
         window.setInterval(function() {
-            init();
-            showMatrix();
+            load()
         }, milliseconds);
 
 </script>
