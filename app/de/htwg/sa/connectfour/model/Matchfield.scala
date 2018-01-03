@@ -56,7 +56,7 @@ class Matchfield(row: Int, column: Int){
 
     }
 
-    println("Counter left: " + winCounterLeft + " Counter Right: " + winCounterRight)
+    //println("Counter left: " + winCounterLeft + " Counter Right: " + winCounterRight)
 
 
     if(winCounterRight >= 4 || winCounterLeft >= 4){
@@ -75,6 +75,7 @@ class Matchfield(row: Int, column: Int){
   def setElementinMatchfield(row:Int, column:Int, newValue:String): Boolean ={
     lastMoveRow = row
     lastMoveColumn = column
+    //println("row: " + row + " column: " + column + " value: " + newValue)
     if(matrix(row)(column) == "empty") {
       try{
         if (matrix(row + 1)(column) != "empty") {
