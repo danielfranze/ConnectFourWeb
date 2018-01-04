@@ -1,11 +1,15 @@
 var wsUri = "ws://connectfourweb.herokuapp.com/socket";
 var output;
 
-
+function set_ws_uri(){
+    var scheme   = "ws://";
+    wsUri =  scheme + window.document.location.host + "/socket"
+}
 
 function init()
 {
     output = document.getElementById("output");
+    set_ws_uri();
     testWebSocket();
 
 }
