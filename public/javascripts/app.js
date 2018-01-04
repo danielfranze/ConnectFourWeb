@@ -1,20 +1,13 @@
-var wsUri = "ws://localhost:9000/socket";
+var wsUri = "ws://connectfourweb.herokuapp.com/socket";
 var output;
 
-function set_ws_uri(){
-    if(window.location.href === "http://localhost:9000/"){
-        wsUri = "ws://localhost:9000/socket";
-    } else{
-        wsUri = "ws://connectfourweb.herokuapp.com/socket";
-    }
-}
 
 
 function init()
 {
     output = document.getElementById("output");
     testWebSocket();
-    set_ws_uri();
+
 }
 
 function testWebSocket()
