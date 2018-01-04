@@ -22,7 +22,13 @@ Installation
 --------------------
 
 1. Clone this Repository
-2. Open it with IntelliJ IDEA (Scala plugin needed!)
+2. Open it with IntelliJ IDEA (with Scala plugin)
+3. Change in "public\javascripts\app.js" the line 5 (for local usage):
+```scala
+var scheme   = "ws://";
+```
+
+4. Start Play
 
 Technologies
 ----------------------
