@@ -27,7 +27,8 @@ import akka.actor._
 
 
 @Singleton
-class HomeController @Inject()(cc: ControllerComponents)(implicit system: ActorSystem, materializer: Materializer) extends AbstractController(cc) {
+class HomeController @Inject()(components: ControllerComponents)
+                              (implicit system: ActorSystem, materializer: Materializer) extends AbstractController(components) {
 
   val (rows, columns) = (6,7)
   val player1 = Player(1, "player1")
