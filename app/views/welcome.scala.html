@@ -30,11 +30,13 @@
 
         function showMatrix(){
             var matrixJson = JSON.parse(current_matrix.replace(/&quot;/g, '\"'));
+            var emptyCellsExists = 0;
             for (var key in matrixJson){
                 var attrName = key;
                 var attrValue = matrixJson[key];
                 if(attrValue === "empty"){
                     document.getElementById(attrName).src="@routes.Assets.versioned("images/empty.svg")";
+                    emptyCellsExists += 1;
                 }else if(attrValue === "1"){
                     document.getElementById(attrName).src="@routes.Assets.versioned("images/yellow.svg")";
                 }else if(attrValue === "2"){
@@ -50,6 +52,8 @@
             }
             if(game_is_won === true){
                 document.getElementById("player").innerHTML = "" + current_player + " won the game!";
+            } else if(emptyCellsExists == 0){
+                startNewGame();
             }
         }
 
