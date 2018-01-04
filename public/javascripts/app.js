@@ -4,7 +4,7 @@ var output;
 function set_ws_uri(){
     if(window.location.href === "http://localhost:9000/"){
         wsUri = "ws://localhost:9000/socket";
-    } else if(window.location.href === "https://connectfourweb.herokuapp.com/"){
+    } else{
         wsUri = "ws://connectfourweb.herokuapp.com/socket";
     }
 }
