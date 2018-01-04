@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.JsonNode
 import de.htwg.sa.connectfour.Start.controller
 import de.htwg.sa.connectfour.model.{Matchfield, Player}
 import play.api.libs.EventSource
-import play.api.libs.iteratee.Concurrent
+//import play.api.libs.iteratee.Concurrent
 import play.api.libs.json.{JsObject, JsValue, Json}
 
 import scala.collection.mutable
@@ -27,7 +27,7 @@ import akka.actor._
 
 
 @Singleton
-class HomeController @Inject()(implicit system: ActorSystem, materializer: Materializer) extends Controller {
+class HomeController @Inject()(cc: ControllerComponents)(implicit system: ActorSystem, materializer: Materializer) extends AbstractController(cc) {
 
   val (rows, columns) = (6,7)
   val player1 = Player(1, "player1")

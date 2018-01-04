@@ -1,31 +1,21 @@
 name          := "ConnectFourWeb"
 organization  := "de.htwg.sa"
-version       := "1.0-SNAPSHOT"
-scalaVersion  := "2.11.8"
+version := "1.0"
+scalaVersion := "2.12.2"
 scalacOptions := Seq("-unchecked", "-feature", "-deprecation", "-encoding", "utf8")
+      
+lazy val `connectfourweb` = (project in file(".")).enablePlugins(PlayScala)
 
+resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
+      
+resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
+libraryDependencies ++= Seq( jdbc , ehcache , ws , specs2 % Test , guice )
 
-libraryDependencies += jdbc
-libraryDependencies += cache
-libraryDependencies += ws
+unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
 
-libraryDependencies ++= Seq(
-  "org.scalatestplus.play" %% "scalatestplus-play" % "2.0.0" % Test
+// Scala Test
+libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.4"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.4" % "test"
 
-
-)
-
-resolvers += Resolver.jcenterRepo
-
-libraryDependencies ++= {
-  val scalaTestV       = "3.0.0-M15"
-  val scalaMockV       = "3.2.2"
-  Seq(
-    "org.scalatest" %% "scalatest"                   % scalaTestV       % "test",
-    "org.scalamock" %% "scalamock-scalatest-support" % scalaMockV       % "test"
-  )
-}
-
-libraryDependencies += "junit" % "junit" % "4.8" % "test"
+libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % "test"
