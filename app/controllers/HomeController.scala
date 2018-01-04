@@ -42,8 +42,12 @@ class HomeController @Inject()(components: ControllerComponents)
   class MyWebSocketActor(out: ActorRef) extends Actor {
     def receive = {
       case msg:String => {
-        controller.set(msg.charAt(0).toInt - 48, msg.charAt(1).toInt - 48)
-        controller.notifyObservers()
+        if(msg == "start_new_game")
+          {controller.createEmptyMatchfield()
+        } else{
+          controller.set(msg.charAt(0).toInt - 48, msg.charAt(1).toInt - 48)
+          controller.notifyObservers()
+        }
         out ! (matrixToJson.toString())
       }
     }

@@ -6,6 +6,26 @@ function set_ws_uri(){
     wsUri =  scheme + window.document.location.host + "/socket"
 }
 
+
+function startNewGame(){
+    current_cell = "00";
+    current_matrix = '';
+    current_player = "Loading...";
+    game_is_won = false;
+    set_ws_uri();
+    websocket = new WebSocket(wsUri);
+    websocket.onopen = function(evt) { onOpenStartNew(evt) };
+    websocket.onclose = function(evt) { onClose(evt) };
+    websocket.onmessage = function(evt) { onMessage(evt) };
+    websocket.onerror = function(evt) { onError(evt) };
+}
+function onOpenStartNew(evt)
+{
+    //writeToScreen("CONNECTED");
+    doSend("start_new_game");
+
+}
+
 function init()
 {
     output = document.getElementById("output");
@@ -27,7 +47,10 @@ function testWebSocket()
 function onOpen(evt)
 {
     //writeToScreen("CONNECTED");
-    doSend(current_cell);
+    if(game_is_won == false){
+        doSend(current_cell);
+    }
+
 }
 
 function onClose(evt)

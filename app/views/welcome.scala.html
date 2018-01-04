@@ -15,12 +15,17 @@
         var current_cell = "00";
         var current_matrix = '';
         var current_player;
-        var game_is_won;
+        var game_is_won = false;
         var milliseconds = 1500;
 
         function changeImage(index) {
-            current_cell = index;
-            init();
+            if(game_is_won === false){
+                current_cell = index;
+                init();
+            } else{
+                startNewGame();
+            }
+
         }
 
         function showMatrix(){
