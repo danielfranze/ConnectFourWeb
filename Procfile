@@ -1,0 +1,1 @@
+target/universal/stage/bin/connectfourweb -Dhttp.port=${PORT} -Dconfig.resource=${PLAY_CONF_FILE}
