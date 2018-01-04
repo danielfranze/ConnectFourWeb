@@ -1,4 +1,4 @@
-var wsUri = "ws://connectfourweb.herokuapp.com/socket";
+var wsUri = "";
 var output;
 
 function set_ws_uri(){
