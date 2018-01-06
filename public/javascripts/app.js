@@ -47,9 +47,8 @@ function testWebSocket()
 function onOpen(evt)
 {
     //writeToScreen("CONNECTED");
-    if(game_is_won == false){
-        doSend(current_cell);
-    }
+    doSend(current_cell);
+
 
 }
 
