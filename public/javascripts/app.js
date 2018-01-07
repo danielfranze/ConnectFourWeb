@@ -3,7 +3,7 @@ var output;
 
 function set_ws_uri(){
     var scheme   = "wss://";
-    wsUri =  scheme + window.document.location.host + "/socket"
+    wsUri =  scheme + window.document.location.host + "/socket";
 }
 
 
