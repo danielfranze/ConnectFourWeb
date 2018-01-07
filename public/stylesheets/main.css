@@ -176,3 +176,13 @@ body{}.wrapper{width:100%;}
 @media all and (max-width: 480px) {
     #top h1{font-size:55px;line-height:40px;}
 }
+
+img {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+}
