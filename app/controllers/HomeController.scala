@@ -28,7 +28,6 @@ import play.api.libs.streams._
 import akka.stream._
 import akka.actor._
 
-
 @Singleton
 class HomeController @Inject()(components: ControllerComponents)
                               (implicit system: ActorSystem, materializer: Materializer) extends AbstractController(components) {
@@ -49,18 +48,16 @@ class HomeController @Inject()(components: ControllerComponents)
   class MyWebSocketActor(out: ActorRef) extends Actor {
     def receive = {
       case msg:String => {
-        if(msg == "start_new_game")
-          {controller.createEmptyMatchfield()
-        } else if(msg == ""){
-
-        } else{
-          controller.set(msg.charAt(0).toInt - 48, msg.charAt(1).toInt - 48)
-          //controller.notifyObservers()
+        msg match{
+          case "start_new_game" => controller.createEmptyMatchfield()
+          case "" =>
+          case _ => controller.set(msg.charAt(0).toInt - 48, msg.charAt(1).toInt - 48)
         }
-        out ! (matrixToJson.toString())
+        out ! matrixToJson.toString()
       }
     }
   }
+
   def socket = WebSocket.accept[String, String] { request =>
     ActorFlow.actorRef( out => MyWebSocketActor.props(out))
   }
