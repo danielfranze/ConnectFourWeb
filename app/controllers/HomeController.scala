@@ -8,9 +8,12 @@ import play.api.mvc._
 import java.util.{HashMap, Map}
 
 import com.fasterxml.jackson.databind.JsonNode
-import de.htwg.sa.connectfour.Start.controller
+import de.htwg.sa.connectfour.Start.{controller, tui}
 import de.htwg.sa.connectfour.model.{Matchfield, Player}
+import de.htwg.sa.connectfour.view.Tui
 import play.api.libs.EventSource
+
+import scala.io.StdIn.readLine
 //import play.api.libs.iteratee.Concurrent
 import play.api.libs.json.{JsObject, JsValue, Json}
 
@@ -30,10 +33,14 @@ import akka.actor._
 class HomeController @Inject()(components: ControllerComponents)
                               (implicit system: ActorSystem, materializer: Materializer) extends AbstractController(components) {
 
+
   val (rows, columns) = (6,7)
   val player1 = Player(1, "player1")
   val player2 = Player(2, "player2")
   val controller = new de.htwg.sa.connectfour.controller.Controller(new Matchfield(rows, columns), player1, player2)
+  val tui = new Tui(controller)
+  var thread:Thread = new Thread
+  var threadIsRunning = false
 
   object MyWebSocketActor {
     def props(out: ActorRef) = Props(new MyWebSocketActor(out))
@@ -44,9 +51,11 @@ class HomeController @Inject()(components: ControllerComponents)
       case msg:String => {
         if(msg == "start_new_game")
           {controller.createEmptyMatchfield()
+        } else if(msg == ""){
+
         } else{
           controller.set(msg.charAt(0).toInt - 48, msg.charAt(1).toInt - 48)
-          controller.notifyObservers()
+          //controller.notifyObservers()
         }
         out ! (matrixToJson.toString())
       }
@@ -87,11 +96,32 @@ class HomeController @Inject()(components: ControllerComponents)
     //controller.set(5, 1)
     val current_player: String = controller.currentPlayer.name
     val current_matrix = matrixToJson.toString()
-    controller.notifyObservers()
+
+
+    if(!threadIsRunning){
+      thread = new Thread {
+        override def run {
+          startTui()
+        }
+      }
+      thread.start
+      threadIsRunning = true
+    }
+
     //Ok(views.html.index(s"Current Player: $test  $test1"))
 
     Ok(views.html.index(s"Current Player: $current_player", current_player, s"$current_matrix"))
 
+  }
+
+  def startTui(){
+    controller.notifyObservers()
+    var input: String = ""
+
+    do {
+      input = readLine()
+      tui.processInputLine(input)
+    } while (input != "q")
   }
 
 

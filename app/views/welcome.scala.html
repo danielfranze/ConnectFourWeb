@@ -13,6 +13,7 @@
 
 
         var current_cell = "00";
+        var current_cell_sent = true;
         var current_matrix = '';
         var current_player;
         var game_is_won = false;
@@ -21,6 +22,7 @@
         function changeImage(index) {
             if(game_is_won === false){
                 current_cell = index;
+                current_cell_sent = false;
                 init();
             } else{
                 startNewGame();

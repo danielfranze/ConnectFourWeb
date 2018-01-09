@@ -47,7 +47,13 @@ function testWebSocket()
 function onOpen(evt)
 {
     //writeToScreen("CONNECTED");
-    doSend(current_cell);
+    if(current_cell_sent == false){
+        doSend(current_cell);
+        current_cell_sent = true
+    } else{
+        doSend("");
+    }
+
 
 
 }
