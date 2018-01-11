@@ -155,7 +155,7 @@ class HomeController @Inject()(components: ControllerComponents)
     val current_matrix = matrixToJson.toString()
 
 
-    if(!threadIsRunning){
+    /*if(!threadIsRunning){
       thread = new Thread {
         override def run {
           startTui()
@@ -163,7 +163,7 @@ class HomeController @Inject()(components: ControllerComponents)
       }
       thread.start
       threadIsRunning = true
-    }
+    }*/
 
     //Ok(views.html.index(s"Current Player: $test  $test1"))
 
