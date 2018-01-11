@@ -1,5 +1,11 @@
 package controllers
 
+import com.google.gson.Gson
+import java.util.{Map => JMap, LinkedHashMap}
+import com.google.common.reflect.TypeToken
+
+
+
 import java.util
 import javax.inject._
 
@@ -10,6 +16,8 @@ import java.util.{HashMap, Map}
 import com.fasterxml.jackson.databind.JsonNode
 import de.htwg.sa.connectfour.Start.{controller, tui}
 import de.htwg.sa.connectfour.model.{Matchfield, Player}
+import de.htwg.sa.connectfour.persistence.ISaveGameDao
+import de.htwg.sa.connectfour.persistence.PostgreSQL.PostgreSQL
 import de.htwg.sa.connectfour.view.Tui
 import play.api.libs.EventSource
 
@@ -40,6 +48,7 @@ class HomeController @Inject()(components: ControllerComponents)
   val tui = new Tui(controller)
   var thread:Thread = new Thread
   var threadIsRunning = false
+  var saveGameName = "save_game_#1"
 
   object MyWebSocketActor {
     def props(out: ActorRef) = Props(new MyWebSocketActor(out))
@@ -50,6 +59,8 @@ class HomeController @Inject()(components: ControllerComponents)
       case msg:String => {
         msg match{
           case "start_new_game" => controller.createEmptyMatchfield()
+          case "save_game" => saveMatrixToDatabase()
+          case "load_save_game" => loadMatrixFromDatabaseToCurrentGameInstance()
           case "" =>
           case _ => controller.set(msg.charAt(0).toInt - 48, msg.charAt(1).toInt - 48)
         }
@@ -60,6 +71,55 @@ class HomeController @Inject()(components: ControllerComponents)
 
   def socket = WebSocket.accept[String, String] { request =>
     ActorFlow.actorRef( out => MyWebSocketActor.props(out))
+  }
+
+  def saveMatrixToDatabase():Unit ={
+     val saveGameInstance = new PostgreSQL with ISaveGameDao
+    saveGameInstance.saveOrUpdateSaveGame(saveGameName, matrixToJson.toString())
+  }
+
+  def loadMatrixFromDatabaseToCurrentGameInstance():Unit ={
+    val saveGameInstance = new PostgreSQL with ISaveGameDao
+    val jsonString = saveGameInstance.getSaveGame(saveGameName)
+    val jsonObject = Json.parse(jsonString)
+    //val gson = new Gson()
+    //var encoded = ""
+    //encoded = gson.fromJson(jsonString, (new LinkedHashMap[String, Object]()).getClass)
+    //println("Matrix: " + encoded)
+
+    val gson = new Gson
+    val mapType = new TypeToken[util.HashMap[String, String]] {}.getType
+    val map = gson.fromJson[util.Map[String, String]](jsonString, mapType)
+    //println(jsonString)
+
+
+    var jsonStringToMap = jsonString.substring(1, jsonString.length - 1)
+      .split(",")
+      .map(_.split(":"))
+      .map { case Array(k, v) => (k.substring(1, k.length-1), v.substring(1, v.length-1))}
+      .toMap
+
+    //println(jsonStringToMap)
+    //println(jsonStringToMap.get("45").toString.replace("Some(","").replace(")",""))
+
+    for(row <- 0 to 5)
+      for(column <- 0 to 6){
+        controller.matchfield.matrix(row)(column) = jsonStringToMap.get(s"$row$column").toString.replace("Some(","").replace(")","")
+        //matrixList.put(s"$row$column", controller.matchfield.matrix(row)(column))
+      }
+
+    if(jsonStringToMap.get("won").toString.replace("Some(","").replace(")","") == "true"){
+      controller.gameIsWon = true
+    } else if(jsonStringToMap.get("won").toString.replace("Some(","").replace(")","") == "false"){
+      controller.gameIsWon = false
+    }
+
+    if(jsonStringToMap.get("player").toString.replace("Some(","").replace(")","") == "Yellow"){
+      controller.currentPlayer = controller.player1
+    } else if(jsonStringToMap.get("player").toString.replace("Some(","").replace(")","") == "Red"){
+      controller.currentPlayer = controller.player2
+    }
+
   }
 
   def matrixToHashMap:mutable.HashMap[String, String] = {

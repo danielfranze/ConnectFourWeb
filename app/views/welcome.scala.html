@@ -6,11 +6,14 @@
 <section id="top">
     <div class="wrapper" >
         <h1 id="player" style="float:none !important;">Loading...</h1>
+        <button  id="button_save" type="button" style="margin-right: 120px;margin-top: 10px" class="btn btn-primary"
+                onclick="saveGame()">Save Game</button>
+        <button  id="button_load" type="button" style="margin-left: 120px;margin-top: 10px"  class="btn btn-primary"
+                onclick="loadGame()">Load Game</button>
     </div>
 </section>
 
 <script language="javascript">
-
 
         var current_cell = "00";
         var current_cell_sent = true;

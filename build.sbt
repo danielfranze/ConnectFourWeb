@@ -19,3 +19,15 @@ libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.4"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.4" % "test"
 
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % "test"
+
+
+libraryDependencies += "org.postgresql" % "postgresql" % "42.1.4"
+
+libraryDependencies ++= Seq(
+  "com.typesafe.slick" %% "slick" % "3.2.1",
+  "com.typesafe.slick" %% "slick-hikaricp" % "3.2.1"
+)
+
+libraryDependencies += "com.h2database" % "h2" % "1.4.192"
+
+libraryDependencies += "com.google.code.gson" % "gson" % "2.8.2"

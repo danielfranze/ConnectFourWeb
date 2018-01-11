@@ -2,10 +2,33 @@ var wsUri = "";
 var output;
 
 function set_ws_uri(){
-    var scheme   = "wss://";
+    var scheme   = "ws://";
     wsUri =  scheme + window.document.location.host + "/socket";
 }
 
+
+function saveGame(){
+    set_ws_uri();
+    websocket = new WebSocket(wsUri);
+    websocket.onopen = function(evt) { onOpenSaveGame(evt) };
+    websocket.onclose = function(evt) { onClose(evt) };
+    websocket.onmessage = function(evt) { onMessage(evt) };
+    websocket.onerror = function(evt) { onError(evt) };
+}
+function onOpenSaveGame(){
+    doSend("save_game");
+}
+function loadGame(){
+    set_ws_uri();
+    websocket = new WebSocket(wsUri);
+    websocket.onopen = function(evt) { onOpenLoadGame(evt) };
+    websocket.onclose = function(evt) { onClose(evt) };
+    websocket.onmessage = function(evt) { onMessage(evt) };
+    websocket.onerror = function(evt) { onError(evt) };
+}
+function onOpenLoadGame(){
+    doSend("load_save_game");
+}
 
 function startNewGame(){
     current_cell = "00";
