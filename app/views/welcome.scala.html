@@ -6,9 +6,11 @@
 <section id="top">
     <div class="wrapper" >
         <h1 id="player" style="float:none !important;">Loading...</h1>
-        <button  id="button_save" type="button" style="margin-right: 120px;margin-top: 10px" class="btn btn-primary"
+        <button  id="button_save" type="button" style="margin-right: 10px;margin-top: 10px" class="btn btn-primary"
                 onclick="saveGame()">Save Game</button>
-        <button  id="button_load" type="button" style="margin-left: 120px;margin-top: 10px"  class="btn btn-primary"
+        <button  id="button_new_game" type="button" style="px;margin-top: 10px"  class="btn btn-primary"
+        onclick="startNewGame()">Start New Game</button>
+        <button  id="button_load" type="button" style="margin-left: 10px;margin-top: 10px"  class="btn btn-primary"
                 onclick="loadGame()">Load Game</button>
     </div>
 </section>
@@ -74,7 +76,7 @@
 
             }
             if(game_is_won === true){
-                document.getElementById("player").innerHTML = "" + current_player + " won the game!";
+                document.getElementById("player").innerHTML = "" + current_player + " won the Game!";
             } else if(emptyCellsExists == 0){
                 startNewGame();
             }
