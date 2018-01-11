@@ -173,12 +173,13 @@ class HomeController @Inject()(components: ControllerComponents)
 
   def startTui(){
     controller.notifyObservers()
-    var input: String = ""
+    // Input via console
+    /*var input: String = ""
 
     do {
       input = readLine()
       tui.processInputLine(input)
-    } while (input != "q")
+    } while (input != "q")*/
   }
 
 
