@@ -154,32 +154,12 @@ class HomeController @Inject()(components: ControllerComponents)
     val current_player: String = controller.currentPlayer.name
     val current_matrix = matrixToJson.toString()
 
+    println("New Client connected!")
+    controller.notifyObservers()
 
-    /*if(!threadIsRunning){
-      thread = new Thread {
-        override def run {
-          startTui()
-        }
-      }
-      thread.start
-      threadIsRunning = true
-    }*/
-
-    //Ok(views.html.index(s"Current Player: $test  $test1"))
 
     Ok(views.html.index(s"Current Player: $current_player", current_player, s"$current_matrix"))
 
-  }
-
-  def startTui(){
-    controller.notifyObservers()
-    // Input via console
-    /*var input: String = ""
-
-    do {
-      input = readLine()
-      tui.processInputLine(input)
-    } while (input != "q")*/
   }
 
 
