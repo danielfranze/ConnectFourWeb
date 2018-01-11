@@ -23,6 +23,12 @@
         var milliseconds = 1500;
 
         function changeImage(index) {
+            if(current_player == "Yellow"){
+                document.getElementById(index).src="@routes.Assets.versioned("images/yellow_fast.svg")";
+            } else if(current_player == "Red"){
+                document.getElementById(index).src="@routes.Assets.versioned("images/red_fast.svg")";
+            }
+
             if(game_is_won === false){
                 current_cell = index;
                 current_cell_sent = false;
