@@ -21,10 +21,17 @@
         var current_player;
         var game_is_won = false;
         var milliseconds = 1500;
-        var timerInterval = 0;
+        var intervalID = 0;
+
+        function intervalManager(flag, animate, time) {
+            if(flag)
+                intervalID =  setInterval(animate, time);
+            else
+                clearInterval(intervalID);
+        }
 
         function changeImage(index) {
-            clearInterval(timerInterval);
+            intervalManager(false);
             if(current_player == "Yellow"){
                 document.getElementById(index).src="@routes.Assets.versioned("images/yellow_fast.svg")";
             } else if(current_player == "Red"){
@@ -38,6 +45,7 @@
             } else{
                 startNewGame();
             }
+            intervalManager(true, load_data, milliseconds);
 
         }
 
@@ -76,8 +84,8 @@
             init();
             showMatrix();
         }
-
-        timerInterval = window.setInterval(load_data, milliseconds);
+        intervalManager(true, load_data, milliseconds);
+        //timerInterval = window.setInterval(load_data, milliseconds);
 
         /*window.onload = function() {
             load_data();
