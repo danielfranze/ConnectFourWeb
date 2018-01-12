@@ -19,7 +19,7 @@ function onOpenSaveGame(){
     doSend("save_game");
 }
 function loadGame(){
-    document.getElementById("player").innerHTML = "Loading...";
+    document.getElementById("player").innerHTML = "LOADING...";
     set_ws_uri();
     websocket = new WebSocket(wsUri);
     websocket.onopen = function(evt) { onOpenLoadGame(evt) };
