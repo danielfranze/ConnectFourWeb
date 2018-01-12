@@ -8,17 +8,21 @@ function set_ws_uri(){
 
 
 function saveGame(){
+    intervalManager(false);
+    document.getElementById("player").innerHTML = "LOADING...";
     set_ws_uri();
     websocket = new WebSocket(wsUri);
     websocket.onopen = function(evt) { onOpenSaveGame(evt) };
     websocket.onclose = function(evt) { onClose(evt) };
     websocket.onmessage = function(evt) { onMessage(evt) };
     websocket.onerror = function(evt) { onError(evt) };
+    intervalManager(true, load_data, milliseconds);
 }
 function onOpenSaveGame(){
     doSend("save_game");
 }
 function loadGame(){
+    intervalManager(false);
     document.getElementById("player").innerHTML = "LOADING...";
     set_ws_uri();
     websocket = new WebSocket(wsUri);
@@ -26,15 +30,18 @@ function loadGame(){
     websocket.onclose = function(evt) { onClose(evt) };
     websocket.onmessage = function(evt) { onMessage(evt) };
     websocket.onerror = function(evt) { onError(evt) };
+    intervalManager(true, load_data, milliseconds);
 }
 function onOpenLoadGame(){
     doSend("load_save_game");
 }
 
 function startNewGame(){
+    intervalManager(false);
+    document.getElementById("player").innerHTML = "LOADING...";
     current_cell = "00";
     current_matrix = '';
-    current_player = "Loading...";
+    current_player = "LOADING...";
     game_is_won = false;
     set_ws_uri();
     websocket = new WebSocket(wsUri);
@@ -42,6 +49,7 @@ function startNewGame(){
     websocket.onclose = function(evt) { onClose(evt) };
     websocket.onmessage = function(evt) { onMessage(evt) };
     websocket.onerror = function(evt) { onError(evt) };
+    intervalManager(true, load_data, milliseconds);
 }
 function onOpenStartNew(evt)
 {
