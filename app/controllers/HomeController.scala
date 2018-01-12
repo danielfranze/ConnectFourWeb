@@ -46,7 +46,6 @@ class HomeController @Inject()(components: ControllerComponents)
   val player2 = Player(2, "player2")
   val controller = new de.htwg.sa.connectfour.controller.Controller(new Matchfield(rows, columns), player1, player2)
   val tui = new Tui(controller)
-  var thread:Thread = new Thread
   var threadIsRunning = false
   var saveGameName = "save_game_#1"
 
