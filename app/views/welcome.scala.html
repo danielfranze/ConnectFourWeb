@@ -5,12 +5,12 @@
 
 <section id="top">
     <div class="wrapper" >
-        <h1 id="player" style="float:none !important;">LOADING...</h1>
-        <button  id="button_save" type="button" style="margin-right:10px;margin-top:10px" class="btn btn-primary"
+        <h1 id="player" style="float:none !important; font-family:Indie Flower;font-weight: 800;">LOADING...</h1>
+        <button  id="button_save" type="button" style="margin-right:10px;margin-top:10px;font-family:Open Sans;font-weight:300;font-size:16px" class="btn btn-primary"
                 onclick="saveGame()">Save Game</button>
-        <button  id="button_new_game" type="button" style="margin-top:10px"  class="btn btn-primary"
+        <button  id="button_new_game" type="button" style="margin-top:10px;font-family:Open Sans;font-weight:300;font-size:16px"  class="btn btn-primary"
         onclick="startNewGame()">Start New Game</button>
-        <button  id="button_load" type="button" style="margin-left:10px;margin-top:10px"  class="btn btn-primary"
+        <button  id="button_load" type="button" style="margin-left:10px;margin-top:10px;font-family:Open Sans;font-weight:300;font-size:16px"  class="btn btn-primary"
                 onclick="loadGame()">Load Game</button>
     </div>
 </section>
@@ -19,7 +19,7 @@
 
         var current_cell = "00";
         var current_cell_sent = true;
-        var current_matrix = '';
+        var current_matrix = JSON.stringify({ "" : "" });
         var current_player;
         var game_is_won = false;
         var milliseconds = 1500;
