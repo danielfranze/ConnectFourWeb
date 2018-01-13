@@ -28,38 +28,72 @@ class Matchfield(row: Int, column: Int){
     `Was the game won?`
   }
 
-  def diagonalCheck(player: String) ={
-    var winCounterRight = 1
-    var winCounterLeft = 1
-    var `Was the game won?` = false
+
+  def diagnoalCheckEndLine(player: String):Boolean={
+    var winCounterRightDown = 1
+    var winCounterLeftDown = 1
+    var winCounterRightUp = 1
+    var winCounterLeftUp = 1
 
     for(i <- 1 to 3){
-    scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
-
-      if (matrix(lastMoveRow + i)(lastMoveColumn + i) == player) {
-        winCounterLeft += 1
-      }
-    }
       scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
-        if(matrix(lastMoveRow - i)(lastMoveColumn - i) == player){
-          winCounterLeft += 1
-        }}
-      scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
-        if(matrix(lastMoveRow - i)(lastMoveColumn + i) == player){
-          winCounterRight += 1
-        }}
-      scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
-        if (matrix(lastMoveRow + i)(lastMoveColumn - i) == player) {
-          winCounterRight += 1
+        if (matrix(lastMoveRow + i)(lastMoveColumn + i) == player) {
+          winCounterLeftDown += 1
         }
       }
-
+      scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
+        if(matrix(lastMoveRow - i)(lastMoveColumn - i) == player){
+          winCounterLeftUp += 1
+        }
+      }
+      scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
+        if(matrix(lastMoveRow - i)(lastMoveColumn + i) == player){
+          winCounterRightDown += 1
+        }
+      }
+      scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
+        if (matrix(lastMoveRow + i)(lastMoveColumn - i) == player) {
+          winCounterRightUp += 1
+        }
+      }
     }
+    winCounterRightDown >= 4 || winCounterLeftDown >= 4 || winCounterRightUp >= 4 || winCounterLeftUp >= 4
+  }
 
-    //println("Counter left: " + winCounterLeft + " Counter Right: " + winCounterRight)
+  def diagonalCheckMidLine(player: String) ={
+    var winCounterRightMid = 1
+    var winCounterLeftMid = 1
 
+    for(i <- 1 to 2){
+      scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
+        if (matrix(lastMoveRow + i)(lastMoveColumn + i) == player) {
+          winCounterLeftMid += 1
+        }
+      }
+      scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
+        if(matrix(lastMoveRow - i)(lastMoveColumn - i) == player){
+          winCounterLeftMid += 1
+        }
+      }
+      scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
+        if(matrix(lastMoveRow - i)(lastMoveColumn + i) == player){
+          winCounterRightMid += 1
+        }
+      }
+      scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
+        if (matrix(lastMoveRow + i)(lastMoveColumn - i) == player) {
+          winCounterRightMid += 1
+        }
+      }
+    }
+    winCounterRightMid >= 4 || winCounterLeftMid >= 4
+  }
 
-    if(winCounterRight >= 4 || winCounterLeft >= 4){
+  def diagonalCheck(player: String) ={
+    var `Was the game won?` = false
+    //println("Counter left: " + winCounterLeftDown + " Counter Right: " + winCounterRightDown)
+
+    if( diagonalCheckMidLine(player) || diagnoalCheckEndLine(player)){
       `Was the game won?` = true
     }
     `Was the game won?`
