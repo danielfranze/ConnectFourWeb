@@ -13,9 +13,9 @@ function saveGame(){
     set_ws_uri();
     websocket = new WebSocket(wsUri);
     websocket.onopen = function(evt) { onOpenSaveGame(evt) };
-    websocket.onclose = function(evt) { onClose(evt) };
+    //websocket.onclose = function(evt) { onClose(evt) };
     websocket.onmessage = function(evt) { onMessage(evt) };
-    websocket.onerror = function(evt) { onError(evt) };
+    //websocket.onerror = function(evt) { onError(evt) };
     intervalManager(true, load_data, milliseconds);
 }
 function onOpenSaveGame(){
@@ -27,9 +27,9 @@ function loadGame(){
     set_ws_uri();
     websocket = new WebSocket(wsUri);
     websocket.onopen = function(evt) { onOpenLoadGame(evt) };
-    websocket.onclose = function(evt) { onClose(evt) };
+    //websocket.onclose = function(evt) { onClose(evt) };
     websocket.onmessage = function(evt) { onMessage(evt) };
-    websocket.onerror = function(evt) { onError(evt) };
+    //websocket.onerror = function(evt) { onError(evt) };
     intervalManager(true, load_data, milliseconds);
 }
 function onOpenLoadGame(){
@@ -46,9 +46,9 @@ function startNewGame(){
     set_ws_uri();
     websocket = new WebSocket(wsUri);
     websocket.onopen = function(evt) { onOpenStartNew(evt) };
-    websocket.onclose = function(evt) { onClose(evt) };
+    //websocket.onclose = function(evt) { onClose(evt) };
     websocket.onmessage = function(evt) { onMessage(evt) };
-    websocket.onerror = function(evt) { onError(evt) };
+    //websocket.onerror = function(evt) { onError(evt) };
     intervalManager(true, load_data, milliseconds);
 }
 function onOpenStartNew(evt)
@@ -72,9 +72,9 @@ function testWebSocket()
     websocket = new WebSocket(wsUri);
     if (websocket.readyState !== 3){
         websocket.onopen = function(evt) { onOpen(evt) };
-        websocket.onclose = function(evt) { onClose(evt) };
+        //websocket.onclose = function(evt) { onClose(evt) };
         websocket.onmessage = function(evt) { onMessage(evt) };
-        websocket.onerror = function(evt) { onError(evt) };
+        //websocket.onerror = function(evt) { onError(evt) };
     }
 }
 
