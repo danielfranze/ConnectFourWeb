@@ -66,22 +66,22 @@ class Matchfield(row: Int, column: Int){
 
     for(i <- 1 to 2){
       scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
-        if (matrix(lastMoveRow + i)(lastMoveColumn + i) == player) {
+        if (matrix(lastMoveRow + i)(lastMoveColumn + i) == player && matrix(lastMoveRow + 1)(lastMoveColumn + 1) == player) {
           winCounterLeftMid += 1
         }
       }
       scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
-        if(matrix(lastMoveRow - i)(lastMoveColumn - i) == player){
+        if(matrix(lastMoveRow - i)(lastMoveColumn - i) == player && matrix(lastMoveRow - 1)(lastMoveColumn - 1) == player){
           winCounterLeftMid += 1
         }
       }
       scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
-        if(matrix(lastMoveRow - i)(lastMoveColumn + i) == player){
+        if(matrix(lastMoveRow - i)(lastMoveColumn + i) == player && matrix(lastMoveRow - 1)(lastMoveColumn + 1) == player){
           winCounterRightMid += 1
         }
       }
       scala.util.control.Exception.ignoring(classOf[ArrayIndexOutOfBoundsException]) {
-        if (matrix(lastMoveRow + i)(lastMoveColumn - i) == player) {
+        if (matrix(lastMoveRow + i)(lastMoveColumn - i) == player && matrix(lastMoveRow + 1)(lastMoveColumn - 1) == player) {
           winCounterRightMid += 1
         }
       }
